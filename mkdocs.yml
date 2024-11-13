@@ -1,7 +1,13 @@
 site_name: Streamlit 101
+site_url: https://snowflake-labs.github.io/zero-to-streamlit/
 site_description: Getting started with Streamlit
+extra_css:
+    - stylesheets/extra.css
 theme:
     name: material
+    palette:
+        primary: custom
+
     font:
         text: Roboto
         code: Fira Code
@@ -10,16 +16,24 @@ theme:
         - content.code.select
         - content.code.annotate
 nav:
-    - index.md
-    - setup.md
-    - deploy_to_streamlit_cloud.md
-    - datset.md
-    - interactivity.md
-    - data_prepration.md
-    - model_training.md
+    - "Overview": index.md
+    - "Environment Setup": setup.md
+    - "Streamlit OSS":
+          "Deploy": deploy_to_streamlit_cloud.md
+    - "Application":
+          - "Dataset": datset.md
+          - "Interact with Application": interactivity.md
+          - "Data Prepration": data_prepration.md
+          - "Train and Predict": model_training.md
+    - "Streamlit in  Snowflake":
+          - "Deploy to Snowflake": snowflake_deploy.md
 markdown_extensions:
+    - toc:
+          baselevel: 1
+          permalink: "&para;"
     - admonition
     - attr_list
+    - footnotes
     - pymdownx.highlight:
           anchor_linenums: true
           line_spans: __span
