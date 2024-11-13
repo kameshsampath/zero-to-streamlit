@@ -1,6 +1,10 @@
-site_name: My Docs
+site_name: Streamlit 101
+site_description: Getting started with Streamlit
 theme:
     name: material
+    font:
+        text: Roboto
+        code: Fira Code
     features:
         - content.code.copy
         - content.code.select
@@ -10,6 +14,7 @@ nav:
     - setup.md
     - deploy_to_streamlit_cloud.md
     - datset.md
+    - interactivity.md
 markdown_extensions:
     - admonition
     - attr_list

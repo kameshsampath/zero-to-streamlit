@@ -74,6 +74,8 @@ with st.expander("Data"):
 
 As part of this machine learning application we will be predicting the penguin species(**y**) using the input variables(**X**). Let us have them displayed for our reference and clarity.
 
+Edit and update the `streamlit_app.py` with the following code,
+
 ```py linenums="1" hl_lines="16-22"
 import streamlit as st
 
@@ -97,4 +99,43 @@ with st.expander("Data"):
     st.write("**y**")
     y = df.species
     y
+```
+
+## Data Visualization
+
+Let is visualize the penguins data using a [scatter plot](https://docs.streamlit.io/develop/api-reference/charts/st.scatter_chart){:target=_blank}
+
+Edit and update the `streamlit_app.py` with the following code,
+
+```py linenums="1" hl_lines="16-18 20-22 25-30"
+import streamlit as st
+
+# import pandas to read the our data file
+import pandas as pd
+
+st.title("🤖 Machine Learning App")
+
+st.write("Welcome to world of Machine Learning with Streamlit.")
+
+with st.expander("Data"):
+    st.write("**Raw Data**")
+    # read the csv file
+    df = pd.read_csv("data/penguins_cleaned.csv")
+    df
+    # define and display
+    st.write("**X**")
+    x = df.drop("species", axis=1)
+    x
+
+    st.write("**y**")
+    y = df.species
+    y
+
+with st.expander("Data Visualization"):
+    st.scatter_chart(
+        df,
+        x="bill_length_mm",
+        y="body_mass_g",
+        color="species",
+    )
 ```
