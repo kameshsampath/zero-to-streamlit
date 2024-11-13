@@ -215,25 +215,25 @@ with st.sidebar:
     # Gender
     gender = st.radio(
         "Gender",
-        ("Male", "Female"),
+        ("male", "female"),
     )
 
-    # Dataframes for Input features
-    data = {
-        "island": island,
-        "bill_length_mm": bill_length_mm,
-        "bill_depth_mm": bill_depth_mm,
-        "flipper_length_mm": flipper_length_mm,
-        "body_mass_g": body_mass_g,
-        "gender": gender,
-    }
-    input_df = pd.DataFrame(data,index=[0])
-    input_penguins = pd.concat([input_df,X],axis=0)
+# Dataframes for Input features
+data = {
+    "island": island,
+    "bill_length_mm": bill_length_mm,
+    "bill_depth_mm": bill_depth_mm,
+    "flipper_length_mm": flipper_length_mm,
+    "body_mass_g": body_mass_g,
+    "sex": gender,
+}
+input_df = pd.DataFrame(data, index=[0])
+input_penguins = pd.concat([input_df, x], axis=0)
 
-    with st.expander("Input Features"):
-        st.write("**Input Penguins**")
-        input_df
-        st.write("**Combined Penguins Data**")
-        input_penguins
+with st.expander("Input Features"):
+    st.write("**Input Penguins**")
+    input_df
+    st.write("**Combined Penguins Data**")
+    input_penguins
 ```
 
