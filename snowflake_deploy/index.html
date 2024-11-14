@@ -6,15 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Getting started with Streamlit">
+        <meta name="description" content="Getting started with Streamlit OSS and Streamlit in Snowflake.">
       
       
       
         <link rel="canonical" href="https://snowflake-labs.github.io/zero-to-streamlit/snowflake_deploy/">
       
       
-        <link rel="prev" href="../model_training/">
+        <link rel="prev" href="../train_and_predict/">
       
+      
+        <link rel="next" href="../summary/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +24,7 @@
     
     
       
-        <title>Deploy to Snowflake - Streamlit 101</title>
+        <title>Deploy to Snowflake - Streamlit 101: From Open Source to Snowflake Native Development</title>
       
     
     
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#snowflake-deploy" class="md-skip">
+        <a href="#deploying-streamlit-applications-in-snowflake" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +92,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Streamlit 101" class="md-header__button md-logo" aria-label="Streamlit 101" data-md-component="logo">
+    <a href=".." title="Streamlit 101: From Open Source to Snowflake Native Development" class="md-header__button md-logo" aria-label="Streamlit 101: From Open Source to Snowflake Native Development" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,7 +106,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Streamlit 101
+            Streamlit 101: From Open Source to Snowflake Native Development
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -148,13 +150,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Streamlit 101" class="md-nav__button md-logo" aria-label="Streamlit 101" data-md-component="logo">
+    <a href=".." title="Streamlit 101: From Open Source to Snowflake Native Development" class="md-nav__button md-logo" aria-label="Streamlit 101: From Open Source to Snowflake Native Development" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Streamlit 101
+    Streamlit 101: From Open Source to Snowflake Native Development
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -205,59 +207,16 @@
   
   
   
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Streamlit OSS
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            Streamlit OSS
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../deploy_to_streamlit_cloud/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Deploy
+    Deploy to Streamlit Cloud
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -283,7 +242,7 @@
             
   
   <span class="md-ellipsis">
-    Application
+    Penguins App
   </span>
   
 
@@ -293,7 +252,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Application
+            Penguins App
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -308,7 +267,7 @@
         
   
   <span class="md-ellipsis">
-    Dataset
+    Exploring Dataset
   </span>
   
 
@@ -367,11 +326,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../model_training/" class="md-nav__link">
+      <a href="../train_and_predict/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Train and Predict
+    Training and Prediction
   </span>
   
 
@@ -478,13 +437,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prepare-for-deployment" class="md-nav__link">
+  <a href="#preparing-for-deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      Prepare for Deployment
+      Preparing for Deployment
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Prepare for Deployment">
+    <nav class="md-nav" aria-label="Preparing for Deployment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -502,6 +461,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#database_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#schema" class="md-nav__link">
     <span class="md-ellipsis">
       Schema
@@ -511,13 +479,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-app" class="md-nav__link">
+  <a href="#deployin-the-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Deploy App
+      Deployin the App
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deploy App">
+    <nav class="md-nav" aria-label="Deployin the App">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -530,27 +498,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#update-app" class="md-nav__link">
+  <a href="#update-the-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Update App
+      Update the App
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-enviromentyml" class="md-nav__link">
+  <a href="#verify-python-packages" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify enviroment.yml
+      Verify Python Packages
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-snowflakeyml" class="md-nav__link">
+  <a href="#verify-project-manifest" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify snowflake.yml
+      Verify Project Manifest
     </span>
   </a>
   
@@ -562,9 +530,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#further-reading" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      Further Reading
+      Summary
     </span>
   </a>
   
@@ -582,6 +550,26 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -613,13 +601,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prepare-for-deployment" class="md-nav__link">
+  <a href="#preparing-for-deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      Prepare for Deployment
+      Preparing for Deployment
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Prepare for Deployment">
+    <nav class="md-nav" aria-label="Preparing for Deployment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -637,6 +625,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#database_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#schema" class="md-nav__link">
     <span class="md-ellipsis">
       Schema
@@ -646,13 +643,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-app" class="md-nav__link">
+  <a href="#deployin-the-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Deploy App
+      Deployin the App
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deploy App">
+    <nav class="md-nav" aria-label="Deployin the App">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -665,27 +662,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#update-app" class="md-nav__link">
+  <a href="#update-the-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Update App
+      Update the App
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-enviromentyml" class="md-nav__link">
+  <a href="#verify-python-packages" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify enviroment.yml
+      Verify Python Packages
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-snowflakeyml" class="md-nav__link">
+  <a href="#verify-project-manifest" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify snowflake.yml
+      Verify Project Manifest
     </span>
   </a>
   
@@ -697,9 +694,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#further-reading" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      Further Reading
+      Summary
     </span>
   </a>
   
@@ -720,9 +717,23 @@
                   
 
 
-<h1 id="snowflake-deploy">Snowflake Deploy<a class="headerlink" href="#snowflake-deploy" title="Permanent link">&para;</a></h1>
-<p>By the end of this chapter you will understand how to deploy the Streamlit OSS application that we built earlier to Streamlit in Snowflake(SiS).</p>
-<h2 id="prepare-for-deployment">Prepare for Deployment<a class="headerlink" href="#prepare-for-deployment" title="Permanent link">&para;</a></h2>
+<h1 id="deploying-streamlit-applications-in-snowflake">Deploying Streamlit Applications in Snowflake<a class="headerlink" href="#deploying-streamlit-applications-in-snowflake" title="Permanent link">&para;</a></h1>
+<p>Previous Chapter Recap:</p>
+<p>In the last chapter, we developed an interactive Streamlit application for predicting penguin species using our Random Forest model. We focused on creating an intuitive user interface through:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Visualization of prediction probabilities using Streamlit's progress bars</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Strategic content organization with columns and containers for enhanced layout</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Implementation of success messages to display clear prediction results</li>
+</ul>
+<p>Moving forward, we'll explore how to deploy this application within Snowflake's ecosystem using Streamlit in Snowflake (SiS). This integration combines our interactive prediction capabilities with Snowflake's enterprise-grade data platform features.</p>
+<p>In this chapter, we will:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Modify our existing Streamlit application for seamless Snowflake integration</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Establish and configure secure Snowflake connections</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Deploy and validate our application using Streamlit in Snowflake</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Explore critical distinctions between local development and Snowflake deployment</li>
+</ul>
+<h2 id="preparing-for-deployment">Preparing for Deployment<a class="headerlink" href="#preparing-for-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -736,6 +747,7 @@
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>snow<span class="w"> </span>connection<span class="w"> </span><span class="nb">test</span>
 </span></code></pre></div>
 </div>
+<h2 id="database_1">Database<a class="headerlink" href="#database_1" title="Permanent link">&para;</a></h2>
 <p>For this demo all our Snowflake objects will be housed in a DB called <code>st_ml_app</code>.</p>
 <p>Create the database</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>snow<span class="w"> </span>object<span class="w"> </span>create<span class="w"> </span>database<span class="w"> </span><span class="se">\</span>
@@ -750,7 +762,7 @@
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--database<span class="o">=</span><span class="s1">&#39;st_ml_app&#39;</span>
 </span></code></pre></div>
 <p>Download and import the <a href="./notebooks/sis_setup.ipynb">notebook</a> and follow the instructions on the notebook to prepare the environment for deployment.</p>
-<h2 id="deploy-app">Deploy App<a class="headerlink" href="#deploy-app" title="Permanent link">&para;</a></h2>
+<h2 id="deployin-the-app">Deployin the App<a class="headerlink" href="#deployin-the-app" title="Permanent link">&para;</a></h2>
 <h3 id="create-streamlit-project">Create Streamlit Project<a class="headerlink" href="#create-streamlit-project" title="Permanent link">&para;</a></h3>
 <p>Create a Snowflake project from a template, to make things easy and clean we will create the application in <code>$TUTORIAL_HOME/sis</code>.</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>snow<span class="w"> </span>init<span class="w"> </span>sis<span class="w"> </span>--template<span class="w"> </span>example_streamlit
@@ -759,7 +771,7 @@
 <p class="admonition-title">Note</p>
 <p>The application init uses the <code>example_streamlit</code> template from  <a href="https://github.com/snowflakedb/snowflake-cli-templates" target="_blank">https://github.com/snowflakedb/snowflake-cli-templates</a></p>
 </div>
-<h3 id="update-app">Update App<a class="headerlink" href="#update-app" title="Permanent link">&para;</a></h3>
+<h3 id="update-the-app">Update the App<a class="headerlink" href="#update-the-app" title="Permanent link">&para;</a></h3>
 <p>Edit and update the <code>$TUTORIAL_HOME/sis/streamlit_app.py</code> with,</p>
 <div class="language-py highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">  1</a></span>
 <span class="normal"><a href="#__codelineno-4-2">  2</a></span>
@@ -1221,7 +1233,7 @@
 </span><span id="__span-4-229"><a id="__codelineno-4-229" name="__codelineno-4-229"></a><span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">&quot;Predicted Species&quot;</span><span class="p">)</span>
 </span><span id="__span-4-230"><a id="__codelineno-4-230" name="__codelineno-4-230"></a><span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">p_cols</span><span class="p">[</span><span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
 </span></code></pre></div></td></tr></table></div>
-<h3 id="verify-enviromentyml">Verify enviroment.yml<a class="headerlink" href="#verify-enviromentyml" title="Permanent link">&para;</a></h3>
+<h3 id="verify-python-packages">Verify Python Packages<a class="headerlink" href="#verify-python-packages" title="Permanent link">&para;</a></h3>
 <p>Edit and update <code>$TUTORIAL_HOME/sis/environment.yml</code> to be like, ensuring that the packages used locally and in Snowflake are same.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sf_env</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">channels</span><span class="p">:</span>
@@ -1233,23 +1245,62 @@
 </span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas=2.0.3</span>
 </span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy=1.24.3</span>
 </span></code></pre></div>
-<h3 id="verify-snowflakeyml">Verify snowflake.yml<a class="headerlink" href="#verify-snowflakeyml" title="Permanent link">&para;</a></h3>
-<p>Ensure the <code>$TUTORIAL_HOME/sis/snowflake.yml</code> is upto date with your settings.</p>
-<p>Navigate to the SiS application folder,</p>
-<p><div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>sis
+<h3 id="verify-project-manifest">Verify Project Manifest<a class="headerlink" href="#verify-project-manifest" title="Permanent link">&para;</a></h3>
+<p>Edit and updat the Project <a href="https://docs.snowflake.com/en/developer-guide/snowflake-cli/native-apps/project-definitions" target="_blank">manifest</a> <code>$TUTORIAL_HOME/sis/snowflake.yml</code> to be inline with your settings, especially </p>
+<ul>
+<li><code>name</code></li>
+<li><code>main_file</code></li>
+<li><code>query_warehouse</code></li>
+<li><code>artifacts</code></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have followed along the tutorial as is without any changes the only that you might need to change is <code>query_warehouse</code>. If you are using trial account then update it to <code>compute_wh</code>.</p>
+</div>
+<div class="language-yaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nt">definition_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2&quot;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nt">entities</span><span class="p">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">  </span><span class="nt">streamlit_penguin</span><span class="p">:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">streamlit</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="nt">identifier</span><span class="p">:</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="hll"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">streamlit_penguin</span>
+</span></span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="hll"><span class="w">    </span><span class="nt">main_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">streamlit_app.py</span>
+</span></span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="hll"><span class="w">    </span><span class="nt">query_warehouse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kamesh_demos_s</span>
+</span></span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">    </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">src</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="hll"><span class="w">    </span><span class="nt">artifacts</span><span class="p">:</span>
+</span></span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">streamlit_app.py</span>
+</span></span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">environment.yml</span>
+</span></span></code></pre></div></td></tr></table></div>
+<p>Navigate to the application(<strong>sis</strong>) folder,</p>
+<p><div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>sis
 </span></code></pre></div>
-Run the following command to deploy the application to Snowflake,</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>snow<span class="w"> </span>streamlit<span class="w"> </span>deploy<span class="w"> </span>--replace<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--database<span class="o">=</span><span class="s1">&#39;st_ml_app&#39;</span><span class="w">  </span>--schema<span class="o">=</span><span class="s1">&#39;apps&#39;</span>
+Run the following command to deploy the streamlit application to Snowflake,</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The output of the command displays the URL to access the application. In case you missed to note run the following command,
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># get the url to streamlit app named &quot;streamlit_penguin&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>snow<span class="w"> </span>streamlit<span class="w"> </span>get-url<span class="w"> </span>streamlit_penguin
+</span></code></pre></div></p>
+</div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>snow<span class="w"> </span>streamlit<span class="w"> </span>deploy<span class="w"> </span>--replace<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>--database<span class="o">=</span><span class="s1">&#39;st_ml_app&#39;</span><span class="w">  </span>--schema<span class="o">=</span><span class="s1">&#39;apps&#39;</span>
 </span></code></pre></div>
 <p>There you go we have seamlessly deployed the application to SiS with a very little effort.</p>
-<h2 id="further-reading">Further Reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit">Streamlit in Snowflake</a></li>
-<li><a href="https://docs.snowflake.com/en/developer-guide/snowpark/python/working-with-dataframes">Snowpark Python Dataframes</a></li>
-<li><a href="https://docs.snowflake.com/en/developer-guide/snowflake-ml/snowpark-ml">Snowflake ML</a></li>
-<li><a href="https://docs.snowflake.com/en/user-guide/ui-snowsight/notebooks">Snowflake Notebooks</a></li>
-</ul>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>This chapter guided you through the process of transforming a locally running Streamlit application into a production-ready deployment within Snowflake. You learned the essential modifications needed for Snowflake compatibility, understood the configuration requirements, and mastered the deployment process. You now have a fully functional Streamlit application running in Snowflake's secure environment, accessible to your organization's users through Snowflake's interface.</p>
+<blockquote>
+<p><strong>Pro Tip</strong>: You can run this entire application using Snowflake Notebook. Download and import the <a href="../notebooks/environment.yml">environmant</a> and <a href="../notebooks/streamlit_penguin_app.ipynb">application notebook</a> and experience the Snowflake Notebook magic! 🚀</p>
+</blockquote>
 
 
 
@@ -1274,6 +1325,46 @@ Run the following command to deploy the application to Snowflake,</p>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../train_and_predict/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Training and Prediction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Training and Prediction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../summary/" class="md-footer__link md-footer__link--next" aria-label="Next: Summary">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Summary
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -1295,8 +1386,10 @@ Run the following command to deploy the application to Snowflake,</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "toc.follow"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>

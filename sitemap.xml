@@ -21,15 +21,19 @@
          <lastmod>2024-11-14</lastmod>
     </url>
     <url>
-         <loc>https://snowflake-labs.github.io/zero-to-streamlit/model_training/</loc>
-         <lastmod>2024-11-14</lastmod>
-    </url>
-    <url>
          <loc>https://snowflake-labs.github.io/zero-to-streamlit/setup/</loc>
          <lastmod>2024-11-14</lastmod>
     </url>
     <url>
          <loc>https://snowflake-labs.github.io/zero-to-streamlit/snowflake_deploy/</loc>
+         <lastmod>2024-11-14</lastmod>
+    </url>
+    <url>
+         <loc>https://snowflake-labs.github.io/zero-to-streamlit/summary/</loc>
+         <lastmod>2024-11-14</lastmod>
+    </url>
+    <url>
+         <loc>https://snowflake-labs.github.io/zero-to-streamlit/train_and_predict/</loc>
          <lastmod>2024-11-14</lastmod>
     </url>
 </urlset>
