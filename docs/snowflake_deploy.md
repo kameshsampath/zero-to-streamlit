@@ -1,8 +1,23 @@
-# Snowflake Deploy
+# Deploying Streamlit Applications in Snowflake
 
-By the end of this chapter you will understand how to deploy the Streamlit OSS application that we built earlier to Streamlit in Snowflake(SiS).
+Previous Chapter Recap:
 
-## Prepare for Deployment
+In the last chapter, we developed an interactive Streamlit application for predicting penguin species using our Random Forest model. We focused on creating an intuitive user interface through:
+
+- [x] Visualization of prediction probabilities using Streamlit's progress bars
+- [x] Strategic content organization with columns and containers for enhanced layout
+- [x] Implementation of success messages to display clear prediction results
+
+Moving forward, we'll explore how to deploy this application within Snowflake's ecosystem using Streamlit in Snowflake (SiS). This integration combines our interactive prediction capabilities with Snowflake's enterprise-grade data platform features.
+
+In this chapter, we will:
+
+- [x] Modify our existing Streamlit application for seamless Snowflake integration
+- [x] Establish and configure secure Snowflake connections
+- [x] Deploy and validate our application using Streamlit in Snowflake
+- [x] Explore critical distinctions between local development and Snowflake deployment
+
+## Preparing for Deployment
 
 ### Database
 
@@ -19,6 +34,8 @@ By the end of this chapter you will understand how to deploy the Streamlit OSS a
     ```shell
     snow connection test
     ```
+
+## Database
 
 For this demo all our Snowflake objects will be housed in a DB called `st_ml_app`.
 
@@ -44,7 +61,7 @@ snow object create schema \
 
 Download and import the [notebook](./notebooks/sis_setup.ipynb) and follow the instructions on the notebook to prepare the environment for deployment.
 
-## Deploy App
+## Deployin the App
 
 ### Create Streamlit Project
 
@@ -58,18 +75,36 @@ snow init sis --template example_streamlit
     The application init uses the `example_streamlit` template from  <https://github.com/snowflakedb/snowflake-cli-templates>{:target=_blank}
 
 
-### Update App 
+### Update the App 
 
 Edit and update the `$TUTORIAL_HOME/sis/streamlit_app.py` with,
 
-```py linenums="1" hl_lines="7 18"
+```py linenums="1" hl_lines="8-10 13-24 27 37-48"
 import streamlit as st
+import os
 
 # import pandas to read the our data file
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from snowflake.snowpark.context import get_active_session
+from snowflake.snowpark.session import Session
+from snowflake.snowpark.functions import col
+from snowflake.snowpark.types import StringType, DecimalType
+
+
+def get_active_session() -> Session:
+    """Create or get new Snowflake Session.
+       When running locally it uses the SNOWFLAKE_CONNECTION_NAME environment variable to get the connection name and when running in SiS it uses the context connection.
+    """
+    conn = st.connection(
+        os.getenv(
+            "SNOWFLAKE_CONNECTION_NAME",
+            "devrel-ent",
+        ),
+        type="snowflake",
+    )
+    return conn.session()
+
 
 session = get_active_session()
 
@@ -79,9 +114,20 @@ st.write("Welcome to world of Machine Learning with Streamlit.")
 
 with st.expander("Data"):
     st.write("**Raw Data**")
-    # read the csv file
-    df = session.table("data.penguins")
-    df
+    # read the data from table
+    # cast the columns to right data types with right precision
+    df = session.table("st_ml_app.data.penguins").select(
+        col("island").cast(StringType()).alias("island"),
+        col("species").cast(StringType()).alias("species"),
+        col("bill_length_mm").cast(DecimalType(5, 2)).alias("bill_length_mm"),
+        col("bill_depth_mm").cast(DecimalType(5, 2)).alias("bill_depth_mm"),
+        col("flipper_length_mm").cast(DecimalType(5, 2)).alias("flipper_length_mm"),
+        col("body_mass_g").cast(DecimalType()).alias("body_mass_g"),
+        col("sex").cast(StringType()).alias("sex"),
+    )
+    df = df.to_pandas()
+    # make the column names lower to reuse the rest of the code as is
+    df.columns = df.columns.str.lower()
     # define and display
     st.write("**X**")
     X_raw = df.drop("species", axis=1)
@@ -137,8 +183,8 @@ with st.sidebar:
     )
     # Filpper Length
     min, max, mean = (
-        df.flipper_length_mm.min().astype(float),
-        df.flipper_length_mm.max().astype(float),
+        df.flipper_length_mm.min(),
+        df.flipper_length_mm.max(),
         df.flipper_length_mm.mean().round(2),
     )
     flipper_length_mm = st.slider(
@@ -266,7 +312,7 @@ st.subheader("Predicted Species")
 st.success(p_cols[prediction[0]])
 ```
 
-### Verify enviroment.yml
+### Verify Python Packages
 
 Edit and update `$TUTORIAL_HOME/sis/environment.yml` to be like, ensuring that the packages used locally and in Snowflake are same.
 
@@ -282,23 +328,56 @@ dependencies:
   - numpy=1.24.3
 ```
 
+### Verify Project Manifest
 
-### Verify snowflake.yml
+Edit and updat the Project [manifest](https://docs.snowflake.com/en/developer-guide/snowflake-cli/native-apps/project-definitions){:target=_blank} `$TUTORIAL_HOME/sis/snowflake.yml` to be inline with your settings, especially 
 
-Ensure the `$TUTORIAL_HOME/sis/snowflake.yml` is upto date with your settings.
+- `name`
+- `main_file`
+- `query_warehouse`
+- `artifacts`
 
-Navigate to the SiS application folder,
+!!! NOTE
+    If you have followed along the tutorial as is without any changes the only that you might need to change is `query_warehouse`. If you are using trial account then update it to `compute_wh`.
+
+```yaml linenums="1" hl_lines="6-8 10-12"
+definition_version: "2"
+entities:
+  streamlit_penguin:
+    type: streamlit
+    identifier:
+      name: streamlit_penguin
+    main_file: streamlit_app.py
+    query_warehouse: kamesh_demos_s
+    stage: src
+    artifacts:
+      - streamlit_app.py
+      - environment.yml
+
+```
+
+Navigate to the application(**sis**) folder,
 
 ```shell
 cd sis
 ```
-Run the following command to deploy the application to Snowflake,
+Run the following command to deploy the streamlit application to Snowflake,
+
+!!!NOTE
+    The output of the command displays the URL to access the application. In case you missed to note run the following command,
+    ```shell
+    # get the url to streamlit app named "streamlit_penguin"
+    snow streamlit get-url streamlit_penguin
+    ```
 
 ```shell
 snow streamlit deploy --replace \
   --database='st_ml_app'  --schema='apps'
 ```
 
-## Further Reading
+There you go we have seamlessly deployed the application to SiS with a very little effort.
 
-__TODO__: add links
+## Summary
+This chapter guided you through the process of transforming a locally running Streamlit application into a production-ready deployment within Snowflake. You learned the essential modifications needed for Snowflake compatibility, understood the configuration requirements, and mastered the deployment process. You now have a fully functional Streamlit application running in Snowflake's secure environment, accessible to your organization's users through Snowflake's interface.
+
+> **Pro Tip**: You can run this entire application using Snowflake Notebook. Download and import the [environmant](../notebooks/environment.yml) and [application notebook](../notebooks/streamlit_penguin_app.ipynb) and experience the Snowflake Notebook magic! 🚀

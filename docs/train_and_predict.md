@@ -1,11 +1,15 @@
-# Model Training
+# Training and Prediction
 
-In this chapter let us train the model and predict the Penguin species using the Input features. We will use the [scikit-learn's](https://scikit-learn.org/stable/index.html) [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#forest) classifier.
+Now that our data is properly encoded, we'll use a classification model to predict penguin species based on their filtered physical characteristics. We'll employ scikit-learn's [Random Forest Classifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html) to calculate probability scores for each species prediction.
+
+In this chapter, we will:
+
+- [x] Split our filtered dataset into training and testing sets
+- [x] Train a Random Forest Classifier using our selected feature set  
+- [x] Calculate prediction probabilities for each penguin species
+- [x] Visualize these probabilities using Streamlit's interactive components
 
 ## Train and Predict
-
-__TODO__: explain what we are doing here 
-
 
 As part of displaying the predictions we will use the following Streamlit components to make the output asthetically appealing,
 
@@ -215,3 +219,14 @@ with st.container():
 st.subheader("Predicted Species")
 st.success(p_cols[prediction[0]])
 ```
+
+## Summary
+
+After successfully creating an interactive penguin species prediction app using Streamlit's Progress bars for probability visualization, Columns for layout, and Containers for organized content, we'll now explore how to deploy this same application in Snowflake using Streamlit in Snowflake (SiS). This will allow us to leverage Snowflake's data platform while maintaining our app's interactive features.
+
+In the next chapter, we will:
+
+* Adapt our existing Streamlit app for Snowflake environment
+* Configure necessary Snowflake connections
+* Deploy and test our application using SiS
+* Understand key differences between local and Snowflake deployment

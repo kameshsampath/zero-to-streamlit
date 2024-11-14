@@ -1,19 +1,20 @@
 # Interactivity
 
-The power of Streamlit excels when we want to add user interactivity to the visualization.
+# Interactive Features
 
-By the end of this module you will have learnt how to use the following widgets,
+In this chapter, we'll discover how to add user interactivity to our application using Streamlit widgets:
 
-- [x] [Sidebar](https://docs.streamlit.io/develop/api-reference/layout/st.sidebar){:target=blank}
-- [x] [Selectbox](https://docs.streamlit.io/develop/api-reference/widgets/st.selectbox){:target=blank}
-- [x] [Slider](https://docs.streamlit.io/develop/api-reference/widgets/st.slider){:target=blank}
-- [x] [Radio](https://docs.streamlit.io/develop/api-reference/widgets/st.radio){:target=blank}
+- [⚡ Sidebar](https://docs.streamlit.io/library/api-reference/layout/st.sidebar){:target="_blank"} for organizing widgets in a collapsible panel
+- [⚡ Select box](https://docs.streamlit.io/library/api-reference/widgets/st.selectbox){:target="_blank"} for choosing categorical features
+- [⚡ Slider](https://docs.streamlit.io/library/api-reference/widgets/st.slider){:target="_blank"} for adjusting numerical values
+- [⚡ Radio buttons](https://docs.streamlit.io/library/api-reference/widgets/st.radio){:target="_blank"} for making single-choice selections
+- [⚡ Checkbox](https://docs.streamlit.io/library/api-reference/widgets/st.checkbox){:target="_blank"} for toggle options
+
+These widgets will allow users to dynamically modify feature values, which will then update our model's predictions in real-time.
 
 ## Build Sidebar
 
-Let us build the sidebar with the widgets to filter the input features.
-
-Edit and update the `streamlit_app.py` with the following code,
+Let's build the sidebar with widgets to filter the input features. We'll edit and update the streamlit_app.py with the following code:
 
 ```py linenums="1" hl_lines="39-43 50-54 62-66 74-79 86-91 93-96"
 import streamlit as st
@@ -32,8 +33,8 @@ with st.expander("Data"):
     df
     # define and display
     st.write("**X**")
-    x = df.drop("species", axis=1)
-    x
+    X = df.drop("species", axis=1)
+    X
 
     st.write("**y**")
     y = df.species
@@ -114,9 +115,9 @@ with st.sidebar:
     )
 ```
 
-## Input Features Dataframe
+## Feature Data Preprocessing
 
-__TODO__: explain what we are doing here 
+Create a DataFrame from user input and combine it with existing penguin data using pd.concat, ensuring the new data undergoes the same preprocessing steps as our training data.
 
 Edit and update the `streamlit_app.py` with the following code,
 
@@ -228,7 +229,7 @@ data = {
     "sex": gender,
 }
 input_df = pd.DataFrame(data, index=[0])
-input_penguins = pd.concat([input_df, x], axis=0)
+input_penguins = pd.concat([input_df, X], axis=0)
 
 with st.expander("Input Features"):
     st.write("**Input Penguins**")
@@ -237,3 +238,9 @@ with st.expander("Input Features"):
     input_penguins
 ```
 
+Now that we've prepared our input data, let's handle the categorical variables using encoding techniques. Feature encoding is crucial for converting categorical data into a format suitable for machine learning models.
+
+Helpful resources for encoding:
+
+- Scikit-learn encoding guide: https://scikit-learn.org/stable/modules/preprocessing.html#encoding-categorical-features
+- Pandas get_dummies documentation: https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html

@@ -1,6 +1,6 @@
-site_name: Streamlit 101
+site_name: "Streamlit 101: From Open Source to Snowflake Native Development"
 site_url: https://snowflake-labs.github.io/zero-to-streamlit/
-site_description: Getting started with Streamlit
+site_description: Getting started with Streamlit OSS and Streamlit in Snowflake.
 extra_css:
     - stylesheets/extra.css
 theme:
@@ -15,18 +15,23 @@ theme:
         - content.code.copy
         - content.code.select
         - content.code.annotate
+        - navigation.instant
+        - navigation.instant.progress
+        - navigation.tracking
+        - navigation.footer
+        - toc.follow
 nav:
     - "Overview": index.md
     - "Environment Setup": setup.md
-    - "Streamlit OSS":
-          "Deploy": deploy_to_streamlit_cloud.md
-    - "Application":
-          - "Dataset": datset.md
+    - "Deploy to Streamlit Cloud": deploy_to_streamlit_cloud.md
+    - "Penguins App":
+          - "Exploring Dataset": datset.md
           - "Interact with Application": interactivity.md
           - "Data Prepration": data_prepration.md
-          - "Train and Predict": model_training.md
+          - "Training and Prediction": train_and_predict.md
     - "Streamlit in  Snowflake":
           - "Deploy to Snowflake": snowflake_deploy.md
+    - "Summary": "summary.md"
 markdown_extensions:
     - toc:
           baselevel: 1
