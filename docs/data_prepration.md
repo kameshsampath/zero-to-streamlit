@@ -1,9 +1,21 @@
-# Data Preperation
+# Data Preparation
 
-As part of this module we will prepare the data for model training. With our penguin dataset we need to `Encode`:
+Before applying our machine learning model, we need to convert categorical variables into numerical format using One-Hot[^1] Encoding. In our penguin dataset, we'll use pandas `get_dummies()`[^2] to encode:
 
-- The **X(features)** namely `island` and `sex`
-- The **y(target)** `species` names
+**Features (X):**
+- [x] `island` - Categorical location of penguin
+- [x] `sex` - Gender of penguin
+
+**Target (y):**
+- [x] `species` - Type of penguin (our prediction target)
+
+📝 **One-Hot Encoding** converts categorical variables into binary (0 or 1) format. For example:
+```python
+# Original: island = ['Torgersen', 'Biscoe']
+# After encoding:
+# island_Torgersen = [1, 0]
+# island_Biscoe    = [0, 1]
+```
 
 ## Encode Features and Target
 
@@ -156,3 +168,7 @@ with st.expander("Data Preparation"):
     y
 ```
 
+After successfully preprocessing our penguin dataset with appropriate encoding and feature selection, let's move forward to training our model and calculating species prediction probabilities. This step will prepare us for creating interactive visualizations in Streamlit.
+
+[^1]: <https://machinelearningmastery.com/why-one-hot-encode-data-in-machine-learning/>{:target=_blank}
+[^2]: <https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html>{:target=_blank}
